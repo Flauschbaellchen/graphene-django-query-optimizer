@@ -9,6 +9,7 @@ import graphene
 from graphene.relay.connection import connection_adapter, page_info_adapter
 from graphene.types.argument import to_arguments
 from graphene.utils.str_converters import to_camel_case, to_snake_case
+from graphene_django.filter.utils import replace_csv_filters
 from graphene_django.settings import graphene_settings
 from graphene_django.utils.utils import DJANGO_FILTER_INSTALLED, maybe_queryset
 from graphql_relay.connection.array_connection import offset_to_cursor

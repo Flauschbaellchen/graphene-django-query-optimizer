@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 import graphene
 import graphene_django
 from django_filters.constants import ALL_FIELDS
+from graphene_django.filter.utils import replace_csv_filters
 from graphene_django.utils import is_valid_django_model
 
 from .compiler import optimize_single
@@ -53,7 +54,8 @@ class DjangoObjectType(graphene_django.types.DjangoObjectType):
 
         filterset_class = options.get("filterset_class")
         filter_fields: Optional[dict[str, list[str]]] = options.pop("filter_fields", None)
-
+        if filterset_class:
+            replace_csv_filters(options["filterset_class"])
         if filterset_class is None and filter_fields is not None:
             from .filter import create_filterset
 
